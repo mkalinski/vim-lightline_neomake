@@ -8,35 +8,31 @@ Displays the number of warnings and errors for a file, after
 
 ## Usage
 
-```vim
-let g:lightline = {
-\	'component_function': {
-\		'neomake': 'lightline_neomake#component',
-\	},
-\	'active': {
-\		'right': [
-\			['neomake', 'lineinfo'],
-\			['percent'],
-\			['fileformat', 'fileencoding', 'filetype'],
-\		],
-\	},
-\}
-```
-
-The return value of `lightline_neomake#component` is compatible with
-`component_expand`, so it's possible to color the neomake component to stand
-out more.
+The function `lightline_neomake#component` returns a string with names of each
+non-zero Neomake counter ("W", "E", etc.) and their values. It can be used with
+`component_expand` and `component_type` to color the component.
 
 ```vim
 let g:lightline = {
-\	'component_expand': {
-\		'neomake': 'lightline_neomake#component',
-\	},
-\	'component_type': {'neomake': 'error'},
+\   'active': {
+\       'right': [
+\           ['neomake', 'lineinfo'],
+\           ['percent'],
+\           ['fileformat', 'fileencoding', 'filetype'],
+\       ],
+\   },
+\   'component_expand': {
+\       'neomake': 'lightline_neomake#component',
+\   },
+\   'component_type': {
+\       'neomake': 'error',
+\   },
 \}
 ```
 
 ## Configuration
+
+Default values are shown in examples.
 
 ```vim
 " printf-compatible string that accepts two values: the first is the symbol of
